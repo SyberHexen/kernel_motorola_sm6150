@@ -59,7 +59,7 @@ ifeq ($(KERNEL_BUILD), 0)
 		export
 		INCS    +=  -include $(AUDIO_ROOT)/config/qcs405autoconf.h
 	endif
-	ifneq (,$(filter liber%, $(TARGET_PRODUCT)))
+	ifeq ($(CONFIG_LIBER_DTB=y), y)
 		INCS    +=  -include $(AUDIO_ROOT)/config/liberautoconf.h
 	endif
 	ifneq (,$(filter odessa%, $(TARGET_PRODUCT)))
