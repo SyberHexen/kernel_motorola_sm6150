@@ -7,7 +7,7 @@ ifneq (,$(filter channel%, $(TARGET_PRODUCT)))
 EXTRA_CFLAGS += -DCONFIG_TAS2560_REGMAP -DCONFIG_TAS2560_CODEC -DCONFIG_TAS2560_MISC -DCONFIG_SND_SOC_TAS2560
 endif
 
-ifeq ($(CONFIG_LIBER_DTB=y), y)
+ifeq ($(CONFIG_LIBER_DTB), y)
 EXTRA_CFLAGS += -DCONFIG_AW882XX_CODEC -DCONFIG_AW882XX_DSP
 endif
 
@@ -30,6 +30,8 @@ EXTRA_CFLAGS += -DTFA98XX_GIT_VERSIONS=\"$(GIT_VERSION)\"
 EXTRA_CFLAGS += -DTFA9874_NONDSP_STEREO
 EXTRA_CFLAGS += -Isound/soc/codecs/inc
 EXTRA_CFLAGS += -Werror
+
+ifeq ($(CONFIG_LIBER_DTB), y)
 cirrus_madera-objs = madera.o madera-slimbus.o
 obj-m += cirrus_madera.o
 
@@ -61,6 +63,7 @@ endif
 
 cirrus_playback-objs = msm-cirrus-playback.o
 obj-m += cirrus_playback.o
+endif
 
 snd_soc_tfa9874-objs += tfa98xx.o
 snd_soc_tfa9874-objs += tfa_container.o
