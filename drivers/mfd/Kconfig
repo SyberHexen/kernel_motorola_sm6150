@@ -179,6 +179,33 @@ config MFD_AXP20X_I2C
 	  soon as possible. For the same reason the I2C bus driver options
 	  I2C_DESIGNWARE_PLATFORM and I2C_DESIGNWARE_BAYTRAIL must be 'y' too.
 
+config MFD_MADERA
+	select REGMAP
+	select MFD_CORE
+	bool
+
+config MFD_MADERA_SPI
+	tristate "Cirrus Logic Madera codecs with SPI"
+	select MFD_MADERA
+	select MADERA_IRQ
+	select REGMAP_SPI
+	depends on SPI_MASTER
+	help
+	  Support for the Cirrus Logic Madera platform audo SoC
+	  core functionality controlled via SPI.
+
+config MFD_CS47L35
+	bool "Cirrus Logic CS47L35"
+	depends on MFD_MADERA
+	help
+	  Support for Cirrus Logic CS47L35 CODEC.
+
+config MFD_CS47L90
+	bool "Cirrus Logic CS47L90"
+	depends on MFD_MADERA
+	help
+	  Support for Cirrus Logic CS47L90 CODEC.
+
 config MFD_AXP20X_RSB
 	tristate "X-Powers AXP series PMICs with RSB"
 	select MFD_AXP20X
